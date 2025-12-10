@@ -1,0 +1,125 @@
+/* @media only screen and () {} */
+
+@font-face {
+  font-family: "Rubik Regular";
+  src: url("Rubik-Min-Regular.ttf");
+}
+
+* {
+  margin:  0;
+  padding: 0;
+}
+
+html {
+  font-family: serif;
+  /* height: 100%; */
+  /* width:  100%; */
+
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+}
+
+body {
+
+ --font-size: 1.25rem;
+
+ --primary-color: #f8eff0;
+ --background-color: #000;
+
+ --padding: 2.3vw;
+ --margin:  1vw;
+ --trim: calc( 2 * ( var(--padding) + var(--margin) ) );
+
+ /* height: calc( 100% - var(--trim) ); */
+ /* width:  calc( 100% - var(--trim) ); */
+
+ /* height: 100%; */
+ /* width: 100vw; */
+
+ padding: var(--padding);
+ /* margin:  var(--margin); */
+
+ font-size:        var(--font-size);
+ 
+ color:            var(--primary-color);
+ background-color: var(--background-color);  
+ 
+ overflow-x: scroll;
+ overflow-y: scroll;
+
+}
+
+.prams {
+  /* text-align: right; */
+  /* float: right; */
+}
+
+.prams ::selection {
+  background-color: #3b0e14;
+  color: #ffc7cd;
+}
+
+.pram {
+  margin-bottom: 2.7em;
+  max-width: fit-content;
+}
+
+.pram-title {
+  border-bottom: #5a0f1a;
+  border-bottom-style: solid;
+  border-block-width: 0.5em;
+  /*! margin-left: 4vw; */
+  width: inherit;
+  /*! margin-bottom: -0.4em; */
+  padding-bottom: 0.3em;
+  margin-left: 1.0em;
+}
+
+.pram-body {
+  font-family: "Rubik Regular", serif;
+  /*! font-variant: petite-caps; */
+  margin-top: 1.2em;
+  line-height: 0.8em;
+  max-width: fit-content;
+  margin-left: 1.0em;
+}
+
+.pram-line {
+  margin-bottom: 0.3em;
+}
+
+/* ids */
+#vapp {
+  /* height: 100%; */
+  /* width: 100%; */
+}
+
+#vtitle {
+
+  margin-bottom: 2.7em;
+
+  border-bottom-width: 0.65em;
+  border-bottom-style: solid;
+  border-bottom-color: #5a0f1a;
+
+}
+
+/* technicalities */
+
+noscript {
+  display: none;
+}
+
+/* Scrollbars */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
