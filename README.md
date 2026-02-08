@@ -22,3 +22,19 @@ requires node v25.0.0, install dev dependencies, and then:
 ```bash
 esbuild --bundle --outfile="public/van.app.js" src/index.js
 ```
+
+### Running
+
+Any kind of webserver will do as it's "almost-static", i.e., client-side logic.
+I've been running nginx as a webserver via docker, but you can easily go:
+
+```bash
+cd public/
+python -m http.server -b 127.0.0.1 9001
+Serving HTTP on 127.0.0.1 port 9001 (http://127.0.0.1:9001/) ...
+```
+
+And then point your browser.
+
+
+
