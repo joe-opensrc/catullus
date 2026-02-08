@@ -23,6 +23,13 @@ requires node v25.0.0, install dev dependencies, and then:
 esbuild --bundle --outfile="public/van.app.js" src/index.js
 ```
 
+You may need to add the yarn provided esbuild executable to your path, \
+which might look something like: 
+
+```bash
+export PATH="$( realpath .yarn/unplugged/@esbuild-*/node_modules/@esbuild/linux-x64/bin ):${PATH}"
+```
+
 ### Running
 
 Any kind of webserver will do as it's "almost-static", i.e., client-side logic.
