@@ -1,7 +1,8 @@
-# A workflow to publish a vanjs site to GitHub Pages
-# based on (i.e., nicked from) the official sample Next.js workflow 
+# Sample workflow for building and deploying a VanJS site to GitHub Pages using esbuild
+# based on, ( i.e., nicked from ), the official sample Next.js workflow ;)
+#
+# To get started with VanJS see: https://vanjs.org/start
 name: Deploy a VanJS site to Pages
-
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -28,55 +29,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Detect package manager
-        id: detect-package-manager
-        run: |
-          if [ -f "${{ github.workspace }}/yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=yarn" >> $GITHUB_OUTPUT
-            exit 0
-          elif [ -f "${{ github.workspace }}/package.json" ]; then
-            echo "manager=npm" >> $GITHUB_OUTPUT
-            echo "command=ci" >> $GITHUB_OUTPUT
-            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
-            exit 0
-          else
-            echo "Unable to determine package manager"
-            exit 1
-          fi
+        uses: actions/checkout@v5
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
-      - name: Restore cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            .next/cache
-          # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
-      - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+          # can switch to version matrix later
+          node-version: "25.0.0"
+          # add cache in later
+          # cache: yarn
+      - name: Initialise yarn workspace
+        run: yarn init --yes -n esbuild-test
+      - name: Update yarn config, Set nodeLinker
+        run: yarn config set nodeLinker node-modules
+      - name: Add dev dependencies
+        run: yarn add -D @esbuild/linux-x64@0.27.3
+      - name: Build VanJS site with esbuild
+        run: ./node_modules/@esbuild/linux-x64/bin/esbuild --bundle --outfile="public/van.app.js" src/index.js
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: ./out
+          path: public/
 
   # Deployment job
   deploy:
@@ -89,4 +61,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
