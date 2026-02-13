@@ -38,7 +38,7 @@ jobs:
           # add cache in later
           # cache: yarn
       - name: Corepack enable
-        run: corepack enable yarn@4.9.2
+        run: corepack enable yarn
       - name: Initialise yarn workspace
         run: yarn init --yes -n esbuild-test
       - name: Update yarn config, Set nodeLinker
