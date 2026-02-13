@@ -1,4 +1,6 @@
-### A Small VanJS Project 
+[![Deploy this VanJS site to Pages](https://github.com/joe-opensrc/catullus/actions/workflows/vanjs.yml/badge.svg?branch=main-pages)](https://github.com/joe-opensrc/catullus/actions/workflows/vanjs.yml) 
+
+### A Small VanJS Project
 
 Specifically:
 
