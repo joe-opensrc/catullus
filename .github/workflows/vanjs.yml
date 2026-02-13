@@ -43,8 +43,8 @@ jobs:
         run: yarn init --yes -n esbuild-test
       - name: Update yarn config, Set nodeLinker
         run: yarn config set nodeLinker node-modules
-      - name: Add dev dependencies
-        run: yarn add -D @esbuild/linux-x64@0.27.3
+      - name: Install dependencies
+        run: yarn install
       - name: Build VanJS site with esbuild
         run: ./node_modules/@esbuild/linux-x64/bin/esbuild --bundle --outfile="public/van.app.js" src/index.js
       - name: Upload artifact
