@@ -11,7 +11,6 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
        catPrams.val = JSON.parse(xhttp.responseText);
-       console.log(catPrams.val);
     }
 };
 
